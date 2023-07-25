@@ -17,7 +17,7 @@ def csv_to_jsonl(input_file, output_file):
             if len(row) >= 3:
                 # Positive Sampling
                 target = 1
-                target_options = [0, 1]
+                target_options = ["no_match", "match"]
                 item = {
                     "input": row[1] + " [SEP] " + row[2],
                     "target": target,
@@ -30,7 +30,7 @@ def csv_to_jsonl(input_file, output_file):
                 sampled_comment = random.choice(comments_for_sampling) if comments_for_sampling else row[2]
                 
                 target = 0
-                target_options = [0, 1]
+                target_options = ["no_match", "match"]
                 item = {
                     "input": row[1] + " [SEP] " + sampled_comment,
                     "target": target,

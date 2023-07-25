@@ -109,7 +109,7 @@ def main():
         cbt_format_file = "train_sample_cbt.jsonl"
         
     
-        #select_random_lines(input_file, raw_output_file, num_lines_to_select)
+        select_random_lines(input_file, raw_output_file, num_lines_to_select)
         process_jsonl_file(raw_output_file, processed_output_file)
         create_cbt_jsonl_file(processed_output_file, cbt_format_file)
         
@@ -120,7 +120,7 @@ def main():
         processed_output_file = 'test_sample_processed.jsonl'
         cbt_format_file = "test_sample_cbt.jsonl"
         
-        #select_random_lines(input_file, raw_output_file, num_lines_to_select)
+        select_random_lines(input_file, raw_output_file, num_lines_to_select)
         process_jsonl_file(raw_output_file, processed_output_file)
         create_cbt_jsonl_file(processed_output_file, cbt_format_file)
         

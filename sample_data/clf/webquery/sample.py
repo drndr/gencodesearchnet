@@ -37,7 +37,7 @@ def create_cbt_jsonl_file(input_file, output_file):
         # Create True Pair
         input = item["doc"] + " [SEP] " + item["code"]
         target = 1
-        target_options = [0, 1]
+        target_options = ["no_match", "match"]
         
         data_with_fields.append({
             "input": input,
@@ -52,7 +52,7 @@ def create_cbt_jsonl_file(input_file, output_file):
         sample_indices.append(idx)  # Add back the removed index for future sampling
 
         target = 0
-        target_options = [0, 1]
+        target_options = ["no match", "match"]
 
         data_with_fields.append({
             "input": input,
