@@ -63,8 +63,8 @@ def create_cbt_jsonl_file(input_file, output_file):
         
         # Create True Pair
         input = item["docstring"] + " [SEP] " + item["code"]
-        target = 1
-        target_options = [0, 1]
+        target = "True"
+        target_options = ["False", "True"]
         
         data_with_fields.append({
             "input": input,
@@ -78,8 +78,8 @@ def create_cbt_jsonl_file(input_file, output_file):
         input = item["docstring"] + " [SEP] " + data[sampled_idx]["code"]
         sample_indices.append(idx)  # Add back the removed index for future sampling
 
-        target = 0
-        target_options = [0, 1]
+        target = "False"
+        target_options = ["False", "True"]
 
         data_with_fields.append({
             "input": input,
