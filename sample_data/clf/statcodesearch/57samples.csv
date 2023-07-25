@@ -1,0 +1,142 @@
+Idx,Comment,Code
+10774 exp1mainanalyses.R 13,Function for formatting numbers with two decimals,"scaleFUN = function(x) sprintf(""%.2f"", x)"
+363 word_analysis.R 4,remove stopwords,"stopwords_regex = paste(stopwords('SMART'), collapse = '\\b|\\b')
+stopwords_regex = paste0('\\b', stopwords_regex, '\\b')
+dat$abstract <- unlist(lapply(dat$abstract, function(x) stringr::str_replace_all(x, stopwords_regex, '')))"
+363 word_analysis.R 5,remove double space,"dat$abstract <- unlist(lapply(dat$abstract, function(x) gsub(' +',' ',x)))"
+363 word_analysis.R 6,remove words of length 2 or less,"temp <- strsplit(dat$abstract, split="" "")
+dat$abstract <- unlist(lapply(temp, function(x) paste(x[nchar(x)>=3], collapse="" "")))"
+363 word_analysis.R 10,compute unigram frequency and probability,"unigram_pre <- pre %>%
+unnest_tokens(word, abstract) %>%
+dplyr::count(word, sort = TRUE) %>%
+mutate(p = n / sum(n))"
+363 word_analysis.R 24,function to extract related words,"search_related <- function(word_vectors, selected_vector) {
+similarities <- word_vectors %*% selected_vector %>%
+tidy() %>%
+as_tibble() %>%
+dplyr::rename(token = .rownames,
+similarity = unrowname.x.)
+similarities %>%
+arrange(-similarity)}"
+8852 plotBoot_Graphs_BC_CG_Together_line (1).R 1,Set the appropriate working directory,"setwd(""C:/Users/abell/Documents/exp_prep/analysis/S1_data"")"
+8162 Fisher_Z_3PERIODS_std.R 6,only keep rows in dataframe that have values within 1.5*IQR of Q1 and Q3,"no_outliers2 <- subset(df, DV2> (Q1 - 1.5*IQR2) & DV2< (Q3 + 1.5*IQR2))
+no_outliers3 <- subset(df, DV3> (Q1 - 1.5*IQR3) & DV3< (Q3 + 1.5*IQR3))"
+3696 clustering_syn_types.R 4,display the correlations as a histogram and heatmap,"cor_matrix_half <- cor_matrix[upper.tri(cor_matrix)]
+mean(cor_matrix_half)
+sd(cor_matrix_half)
+hist(as.vector(cor_matrix_half), breaks=24, cex.axis=2) # Note: Novich et al. suppressed correlations of r<.4 in their visualisation
+heatmap(x = cor_matrix, symm = TRUE)"
+3696 clustering_syn_types.R 5,CLUSTERING similar correlations together,"distances <- dist(cor_matrix, method = ""euclidean"", diag = FALSE, upper = FALSE)
+clusters <- hclust(distances) # note: tightest clusters appear on the left, defaults to the ""complete"" method"
+3253 REPRISE 2_Data sharing_Analysis.R 8,Print docx,"print(flextab, preview='docx')"
+158 sample code ridge regression.R 0,Split off the test set from the training and development data.,"indices <- caret::createDataPartition(data$happiness, p = 0.75, list=FALSE)
+train_dev_data <- data[indices,]
+testdata <- data[-indices,]"
+158 sample code ridge regression.R 1,activate kernels on computer for simultaneous processing.,"cl <- makePSOCKcluster(10)
+registerDoParallel(cl)"
+158 sample code ridge regression.R 2,We implement 10 fold cross-validation (same as above).,"cross_validation = trainControl(method=""cv"", number=10)"
+158 sample code ridge regression.R 3,Set possible values for hyperparameter lambda.,"tuning = expand.grid(alpha = 0, lambda = c(0.1, 0.2, 0.4, 0.8, 1.6, 3.2, 6.4))
+tuninga = expand.grid(alpha = 0, lambda = 0)"
+10998 0_Rcode_RSA_dataA.R 2,show the model parameters etc.,summary(myrsa)
+158 sample code ridge regression.R 5,Get the results.,"predictionmodel$results
+stopImplicitCluster()"
+158 sample code ridge regression.R 6,Make predictions with best model and evaluate accuracy,"test_predictions = predict(predictionmodel, testdata)
+R2(test_predictions, testdata$happiness)
+linreg = glm(happiness ~., data = train_dev_data) tp = predict(linreg, testdata)
+R2(tp, testdata$happiness)"
+11637 random_forests.R 3,convert data to data.frame,prediction <- as.data.frame(prediction)
+11213 Stthreatdailydiary_3-9-18_codeforOSF.R 12,number of observations,nrow(stdata)
+7326 GenPopUnderestimationofSocial.R 5,Check if there are any missing values in the selfratephys column,"any(is.na(data$selfratephys)) # TRUE means there are missing data, (it came back TRUE)"
+7326 GenPopUnderestimationofSocial.R 6,Count the number of missing values in the selfratephys column,n_missing <- sum(is.na(data$selfratephys))
+7326 GenPopUnderestimationofSocial.R 7,Print the number of missing values,"cat(""Number of missing values in selfratephys column:"", n_missing) ## only 2 are missing - probably fine to impute a median value
+cat(""Number of missing values in ucla3 column:"", n_missing) ## only 2 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_notlonely column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_receivesocialsupp column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_socialintegration column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_nosmoke column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_quitsmoke column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_notexcessalcohol column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_fluvax column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_physact column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_notobese column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_meds column:"", n_missing) ## only 3 are missing - probably fine to impute a median value
+cat(""Number of missing values in estimateyrs_lowpollution column:"", n_missing) ## only 3 are missing - probably fine to impute a median value"
+7326 GenPopUnderestimationofSocial.R 8,Replace missing values with the median of the non-missing values,"data$selfratephys[is.na(data$selfratephys)] <- median(data$selfratephys, na.rm = TRUE)
+data$ucla3[is.na(data$ucla3)] <- median(data$ucla3, na.rm = TRUE)
+data$estimateyrs_notlonely[is.na(data$estimateyrs_notlonely)] <- median(data$estimateyrs_notlonely, na.rm = TRUE)
+data$estimateyrs_receivesocialsupp[is.na(data$estimateyrs_receivesocialsupp)] <- median(data$estimateyrs_receivesocialsupp, na.rm = TRUE)
+data$estimateyrs_socialintegration[is.na(data$estimateyrs_socialintegration)] <- median(data$estimateyrs_socialintegration, na.rm = TRUE)
+data$estimateyrs_nosmoke[is.na(data$estimateyrs_nosmoke)] <- median(data$estimateyrs_nosmoke, na.rm = TRUE)
+data$estimateyrs_quitsmoke[is.na(data$estimateyrs_quitsmoke)] <- median(data$estimateyrs_quitsmoke, na.rm = TRUE)
+data$estimateyrs_notexcessalcohol[is.na(data$estimateyrs_notexcessalcohol)] <- median(data$estimateyrs_notexcessalcohol, na.rm = TRUE)
+data$estimateyrs_fluvax[is.na(data$estimateyrs_fluvax)] <- median(data$estimateyrs_fluvax, na.rm = TRUE)
+data$estimateyrs_physact[is.na(data$estimateyrs_physact)] <- median(data$estimateyrs_physact, na.rm = TRUE)
+data$estimateyrs_notobese[is.na(data$estimateyrs_notobese)] <- median(data$estimateyrs_notobese, na.rm = TRUE)
+data$estimateyrs_meds[is.na(data$estimateyrs_meds)] <- median(data$estimateyrs_meds, na.rm = TRUE)
+data$estimateyrs_lowpollution[is.na(data$estimateyrs_lowpollution)] <- median(data$estimateyrs_lowpollution, na.rm = TRUE)"
+7326 GenPopUnderestimationofSocial.R 30,Create a histogram of age distribution,"hist(data$""Q20-age"", main = ""Age Distribution"", xlab = ""Age"")"
+7326 GenPopUnderestimationofSocial.R 31,Calculate the mean and median age without missing values,"mean_age <- mean(data$""Q20-age"", na.rm = TRUE)
+median_age <- median(data$""Q20-age"", na.rm = TRUE)"
+7326 GenPopUnderestimationofSocial.R 43,Sort the columns by their total score in descending order,"col_order <- names(sort(col_scores, decreasing = FALSE))"
+7326 GenPopUnderestimationofSocial.R 80,"Create new dataframe that only includes US Nationally Representative sample by filtering , the data frame to include only rows from 2023 (dataframe named ""US_Rep_subset"")",US_Rep_subset <- data %>% filter(year(EndDate) == 2023)
+7326 GenPopUnderestimationofSocial.R 81,Remove duplicates in this subset based on ProlificID column and keep all other variables,"US_Rep_subset <- US_Rep_subset %>% distinct(ProlificID, .keep_all = TRUE)"
+11617 analysis.R 2,Load packages,"invisible(lapply(required
+, library
+, character.only = T))"
+8343 Data_preparation_Sample_D.r 17,create folder for descriptive statistics,"dir.create(""Descriptives"", showWarnings = FALSE)"
+8343 Data_preparation_Sample_D.r 5,one participant has a typing error in the age variable (stated he was 2). Set to NA.,"mst1[which(mst1$age == 2), ""age""] <- NA"
+8343 Data_preparation_Sample_D.r 6,remove the 12-year old participant,"mst1 <- mst1[-which(mst1$age == 12),]"
+11749 WoCP_publication_script.R 6, function to get normalized cell probabilites,"calcNormProb <- function(x){
+np <- x/cellStats(x,max)
+return(np)
+}"
+11682 Code_Performance_Part_III_MVAR_FE.R 0,clear workspace,"ls()
+rm(list=ls())"
+11682 Code_Performance_Part_III_MVAR_FE.R 1,Upload the functions,"source(file=""Performance.Cluster.MVAR.FE.R"")"
+11682 Code_Performance_Part_III_MVAR_FE.R 2,Set the values to simulate data assuming a VAR(1) process,"set.seed(123) # Set random seed
+N = c(20,60) # Number of participants
+T = c(50,100) # Number of time points
+P = 4 # Number of variables in VAR(1) models
+cor.Sigma = 0.2 # Set the covariance of the within-individuals errors (i.e., all covariances are assumed to be equal)
+b.ar.min = 0.2 b.ar.max = 0.6
+b.cr.min = 0.05
+b.cr.max = 0.2
+K = c(2,4)
+diff = c(1,2)
+size = c(1,2,3)"
+11682 Code_Performance_Part_III_MVAR_FE.R 3,Set the number of replicates,R = 10 # Number of replicates
+11682 Code_Performance_Part_III_MVAR_FE.R 4,Set the number of blocks in block cross-validation,fold = 10
+9878 VADIS_particles_written.R 11,## calculate similarity coefficient (mean of signif_line$similarity.scores),"mean(signif_line$similarity.scores[,2])"
+2055 openpose2R_2persons_2D_nohand_noface_JSONtoTimeSeries.R 11,write extracted data to csv file in the parent folder,"write.csv(extract_data_allbps, file = paste0(parentfolder, ""/"", name_video, ""_openpose_extracted_2p.csv""),
+row.names = F)"
+1018 01a_DataPrep_Study1.R 3,Exclude participants who completed less than 10 surveys,"dat <- dat[-which(dat$N < 10), ]
+dim(dat) # 18046 assessments
+length(unique(dat$id)) # 286 participants (42 participants excluded)"
+6145 OpenMxMNLFA.R 39,Run model and save output,"runModels(pathfix)
+fitMplusPartial <- readModels(pathfix)"
+6145 OpenMxMNLFA.R 36,Create folder,"pathfix <- ""~/FinalModel""
+dir.create(pathfix)"
+6145 OpenMxMNLFA.R 37,Store data in folder,"prepareMplusData(df=DS14, filename=paste0(pathfix, ""/DS14dat.dat""))"
+10729 Exp1OSF.R 2,Create column scoringnum that codes target completions numerically,"Exp1$scoringnum[Exp1$scoring==""d""] <- 0
+Exp1$scoringnum[Exp1$scoring==""p""] <- 1"
+1566 Fig.S2.R 0,"Load data files
+Chose file : ""PleioSimData.txt""","dataSave <- read.table(file.choose(),h=T)
+head(dataSave)"
+214 IntroSampling.R 1,How many agents do we have in the data?,"sum(pepen$SemanticRole==""agent"")"
+11576 1_dataPrep.R 7,Preprocess data,df = preproc(df)
+11576 1_dataPrep.R 12,make sure it's a dataframe,df = as.data.frame(df)
+11576 1_dataPrep.R 13,save data,"save(df, file = paste(inputFolder, ""df_withIntercepts.rda"", sep = ""/""))"
+7226 vrw_power_randr.R 1,Verify the dimensions of the data frame.,dim(vrData)
+10570 Experiment2RawDataProcessing.R 12,Rename Data columns,"names(ProcessedData) <- c(""Identifier"", ""Stimuli"", ""Distance"", ""Encoding_Rating"", ""Encoding_DecisionTime"", ""DecisionTime"", ""Deviation"", ""sdDecisionTime"", ""sdDeviation"")"
+1150 4_Lat-Reg_PV.R 5,Load model and conditioning variables,"input <- list(
+model = path,
+con.dat = ""1_Data/Conditioning_variables.RData"",
+part.dig = ""1_Data/PA12_Digital_Participation.RData""
+)
+load(input$model)
+load(input$con.dat)
+load(input$part.dig)"
+981 math_anxiety_study.R 1,DATA FILTERING,"data = data %>% filter(filter_erspq == 2) %>% # 2 = keep the valid (not-empty) rows
+filter(stem_soc == ""stem"" | stem_soc == ""soc"") %>% # include only STEM and SOC students
+droplevels()# drop factor levels (for better display)"
+11148 04_1_pairwise_correlations.R 7,Put results into list to keep workspace tidy,"results_corr <- list(res_corr_ext, res_corr_emo, res_corr_agr, res_corr_con, res_corr_ope, res_corr_mean)"
