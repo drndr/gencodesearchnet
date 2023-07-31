@@ -47,7 +47,7 @@ def main():
 
     
     input_file = '57samples.csv'
-    output_file = 'test_sample_cbt.json'
+    output_file = 'test_sample_cbt.jsonl'
             
     csv_to_jsonl(input_file, output_file)
     

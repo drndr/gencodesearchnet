@@ -47,7 +47,7 @@ def main():
     num_lines_to_select = 10
     
     input_file = load_dataset("code_search_net", "go")["test"]
-    output_file = 'test_sample_cbt.json'
+    output_file = 'test_sample_cbt.jsonl'
     cbt_format_file = "test_sample_cbt.jsonl"
             
     sample_create_cbt_jsonl_file(input_file, output_file,10)
