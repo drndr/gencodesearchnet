@@ -4,7 +4,7 @@ import json
 import ast
 
 
-def sample_create_cbt_jsonl_file(dataset, output_file):
+def create_cbt_jsonl_file(dataset, output_file):
     data_with_fields = []
     indices = list(range(len(dataset)))
     with open(output_file, 'w', encoding='utf-8') as outfile:
@@ -41,11 +41,11 @@ def sample_create_cbt_jsonl_file(dataset, output_file):
 
 def main():
 
-    
+    random.seed(42)
     input_file = load_dataset("code_search_net", "go")["test"]
-    output_file = 'go_clf.jsonl'
+    output_file = 'test_go_clf.jsonl'
             
-    sample_create_cbt_jsonl_file(input_file, output_file)
+    create_cbt_jsonl_file(input_file, output_file)
     
 if __name__ == '__main__':
     main()
