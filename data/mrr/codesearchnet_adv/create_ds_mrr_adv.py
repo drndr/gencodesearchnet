@@ -53,7 +53,7 @@ def create_cbt_jsonl_file(input_file, output_file, split):
     for idx, item in enumerate(data):
         
         # Create True Pair
-        input = item["docstring"] + " [SEP] " + item["code"]
+        input = item["docstring"] + " [CODESPLIT] " + item["code"]
         target = 1
         target_options = ["no_match", "match"]
         
@@ -67,7 +67,7 @@ def create_cbt_jsonl_file(input_file, output_file, split):
             # Create False Pair
             sample_indices.remove(idx)  # To avoid sampling from the same line
             sampled_idx = random.choice(sample_indices) # Randomly sample code from another line
-            input = item["docstring"] + " [SEP] " + data[sampled_idx]["code"]
+            input = item["docstring"] + " [CODESPLIT] " + data[sampled_idx]["code"]
             sample_indices.append(idx)  # Add back the removed index for future sampling
 
             target = 0

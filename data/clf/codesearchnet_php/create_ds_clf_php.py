@@ -10,8 +10,8 @@ def create_cbt_jsonl_file(dataset, output_file):
     with open(output_file, 'w', encoding='utf-8') as outfile:
         for idx,item in enumerate(dataset):
         
-            # Create True Pair
-            input = item["func_documentation_string"] + " [SEP] " + item["func_code_string"]
+             # Create True Pair
+            input = " ".join(item["func_documentation_tokens"]) + " [CODESPLIT] " + " ".join(item["func_code_tokens"])
             target = 1
             target_options = ["no_match", "match"]
             
@@ -20,11 +20,10 @@ def create_cbt_jsonl_file(dataset, output_file):
                 "target": target,
                 "target_options": target_options
             })
-            
             # Create False Pair
             indices.remove(idx)  # To avoid sampling from the same line
             sampled_idx = random.choice(indices) # Randomly sample code from another line
-            input = item["func_documentation_string"] + " [SEP] " + dataset[sampled_idx]["func_code_string"]
+            input = " ".join(item["func_documentation_tokens"]) + " [CODESPLIT] " + " ".join(dataset[sampled_idx]["func_code_string"])
             indices.append(idx)  # Add back the removed index for future sampling
 
             target = 0

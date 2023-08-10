@@ -10,7 +10,7 @@ def create_cbt_jsonl_file(dataset, output_file):
         for idx,item in enumerate(dataset):
         
             # Create True Pair
-            input = item["func_documentation_string"] + " [SEP] " + item["func_code_string"]
+            input = " ".join(item["func_documentation_tokens"]) + " [CODESPLIT] " + " ".join(item["func_code_tokens"])
             target = 1
             target_options = ["no_match", "match"]
             
@@ -19,7 +19,6 @@ def create_cbt_jsonl_file(dataset, output_file):
                 "target": target,
                 "target_options": target_options
             })
-                    
         for item in data_with_fields:
                 json.dump(item, outfile, ensure_ascii=False)
                 outfile.write('\n')
