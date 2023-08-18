@@ -82,7 +82,7 @@ def get_dataset_raw(n_distractors) -> Dict[str, datasets.Dataset]:
 def _load_data_source() -> Dict[str, datasets.Dataset]:
     return datasets.load_dataset("json", data_files={'test':'/content/test_ruby.json'})
 
-"""Generate the new datasetsPrPffNeND"""
+"""Generate the new dataset"""
 
 n_distractors = 99  # adjust this number as per your requirements
 new_datasets = get_dataset_raw(n_distractors)
