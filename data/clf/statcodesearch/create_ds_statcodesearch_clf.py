@@ -19,7 +19,7 @@ def csv_to_jsonl(input_file, output_file):
                 target = 1
                 target_options = ["no_match", "match"]
                 item = {
-                    "input": row[1] + " [SEP] " + row[2],
+                    "input": row[1] + " [CODESPLIT] " + row[2],
                     "target": target,
                     "target_options": target_options
                 }
@@ -32,7 +32,7 @@ def csv_to_jsonl(input_file, output_file):
                 target = 0
                 target_options = ["no_match", "match"]
                 item = {
-                    "input": row[1] + " [SEP] " + sampled_comment,
+                    "input": row[1] + " [CODESPLIT] " + sampled_comment,
                     "target": target,
                     "target_options": target_options
                 }
@@ -45,9 +45,9 @@ def csv_to_jsonl(input_file, output_file):
             
 def main():
 
-    
-    input_file = '57samples.csv'
-    output_file = 'test_sample_cbt.jsonl'
+    random.seed(42)
+    input_file = 'R-code-comment-after-filtering.csv'
+    output_file = 'test_statcodesearch_clf.jsonl'
             
     csv_to_jsonl(input_file, output_file)
     

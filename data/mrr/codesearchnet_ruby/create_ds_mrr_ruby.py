@@ -27,7 +27,7 @@ def main():
 
     random.seed(42)
     input_file = load_dataset("code_search_net", "ruby")["test"]
-    output_file = 'test_ruby_clf.jsonl'
+    output_file = 'test_ruby_mrr.jsonl'
             
     create_cbt_jsonl_file(input_file, output_file)
     
