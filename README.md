@@ -6,11 +6,11 @@ Preprint link: https://arxiv.org/abs/2311.09707
 
 The paper introduces a new benchmark test suite to evaluate programming language understanding generalization in language models and is included in the GenBench Collaborative Benchmarking Task (CBT) 2023. As part of the test suite we also include the newly created StatCodeSearch dataset, which includes 1070 code-comment pairs from social science research code written in R.
 
-Link to CBT repository: https://github.com/GenBench/genbench_cbt_2023
+Link to the CBT repository: https://github.com/GenBench/genbench_cbt_2023
 
-Link to Zenodo repository of the dataset: https://zenodo.org/records/8310891
+Link to the Zenodo repository of the dataset: https://zenodo.org/records/8310891
 
-Link to the StatCodeSearch repository in Huggingface: https://huggingface.co/datasets/drndr/statcodesearch
+Link to the StatCodeSearch dataset repository in Huggingface: https://huggingface.co/datasets/drndr/statcodesearch
 
 ### Folder structure:
     ├── data                                 # Code to create GenCodeSearchNet test sets
